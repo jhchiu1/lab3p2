@@ -1,6 +1,4 @@
-db.py
-
-rom sqlalchemy import create_engine
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from base import Base
 from juggler import Juggler
@@ -21,8 +19,7 @@ session.add_all([juggler1, juggler2, juggler3])
 session.commit()
 session.close()
 
-
-# Gets name, country, and catches from user and adds data to db
+# Get name, country, and catches from user and adds data to db
 def add_juggler(name, country, catches):
     add_session = Session()
     new_juggler = Juggler(name=name, country=country, catches=catches)
@@ -31,7 +28,7 @@ def add_juggler(name, country, catches):
     add_session.close()
 
 
-# Gets juggler's name from the user, removes them from db
+# Get juggler's name from the user, removes them from db
 def remove_juggler(name):
     delete_session = Session()
     for juggler in delete_session.query(Juggler).filter_by(name=name):
@@ -40,8 +37,8 @@ def remove_juggler(name):
     delete_session.close()
 
 
-# Prints contents of jugglers table
-def view_all():
+# Print contents of jugglers table
+def show_all():
     view_session = Session()
     for juggler in view_session.query(Juggler):
         print(juggler)
